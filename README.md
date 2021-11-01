@@ -8,7 +8,7 @@ A countdown timer for Twitch that can be used by mods to run quick countdowns on
 
 In your streaming software, create a new browser source with the following parameters: 
 
-- URL: [link here]
+- URL: https://snazzyfox.github.io/twitch-countdown-timer/
 - Width: 640, Height 240
 - Shutdown source when not active: if selected, the timer will not receive any commands when it's hidden in your stream.
 
