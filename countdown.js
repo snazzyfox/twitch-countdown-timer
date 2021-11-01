@@ -34,18 +34,18 @@ function updateTimer() {
         }
         document.getElementById("timer").innerText = formatted;
         document.getElementById("title").innerText = title || '';
+    } else {
+        document.getElementById("timer").innerText = "";
+        document.getElementById("title").innerText = "";
     }
 }
 
 ComfyJS.onCommand = ( user, command, message, flags, extra ) => {
     if ( (flags.moderator || flags.broadcaster) && command == 'timer' ) {
-        var input_duation;
-        [input_duration, ...input_title] = message.split(/\s+/);
-        var duration;
+        var [input_duration, ...input_title] = message.split(/\s+/);
         if (input_duration) {
             if (!isNaN(Number(input_duration))) input_duration = input_duration + "s"; // default to seconds if no units
             duration = Duration.parse(input_duration).milliseconds();
-            console.log("New timer", duration, "title", title);
             endTime = Date.now() + duration;
             localStorage.setItem("endTime", endTime);
             if (input_title.length) {
@@ -55,6 +55,7 @@ ComfyJS.onCommand = ( user, command, message, flags, extra ) => {
                 title = undefined;
                 localStorage.removeItem("title");
             }
+            console.log("New timer", duration, ", title=", title);
         } else {
             duration = title = undefined;
             localStorage.removeItem("endTime");
