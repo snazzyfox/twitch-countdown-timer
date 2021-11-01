@@ -42,22 +42,25 @@ ComfyJS.onCommand = ( user, command, message, flags, extra ) => {
         var input_duation;
         [input_duration, ...input_title] = message.split(/\s+/);
         var duration;
-        if (!input_duration) {
-            duration = undefined;
-        } else {
+        if (input_duration) {
             if (!isNaN(Number(input_duration))) input_duration = input_duration + "s"; // default to seconds if no units
             duration = Duration.parse(input_duration).milliseconds();
-        }
-        console.log("New timer", duration, "title", title);
-        endTime = Date.now() + duration;
-        localStorage.setItem("endTime", endTime);
-        if (input_title.length) {
-            title = input_title.join(" ")
-            localStorage.setItem("title", title);
+            console.log("New timer", duration, "title", title);
+            endTime = Date.now() + duration;
+            localStorage.setItem("endTime", endTime);
+            if (input_title.length) {
+                title = input_title.join(" ")
+                localStorage.setItem("title", title);
+            } else {
+                title = undefined;
+                localStorage.removeItem("title");
+            }
         } else {
-            title = undefined;
+            duration = title = undefined;
+            localStorage.removeItem("endTime");
             localStorage.removeItem("title");
         }
+
     }
 }
 
