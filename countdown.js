@@ -57,7 +57,7 @@ ComfyJS.onCommand = ( user, command, message, flags, extra ) => {
             }
             console.log("New timer", duration, ", title=", title);
         } else {
-            duration = title = undefined;
+            endTime = title = undefined;
             localStorage.removeItem("endTime");
             localStorage.removeItem("title");
         }
