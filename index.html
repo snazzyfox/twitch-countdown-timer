@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/comfy.js@latest/dist/comfy.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/duration-js@4.0.0/duration.min.js"></script>
+    <style>
+        @import url('http://fonts.cdnfonts.com/css/digital-7-mono');
+        @import url('http://fonts.cdnfonts.com/css/enigmatic');
+        body {
+            margin: 0; padding: 0;
+            height: 320px; width: 640px;
+        }
+        #timer {
+            color: #ffbb00;
+            -webkit-text-stroke: 1px #00000099;
+            text-shadow: 4px 4px #00000066;
+            font-family: "Digital-7 Mono", "Courier New", monospace;
+            font-size: 180px;
+            line-height: 180px;
+            width: 640px;
+            text-align: right;
+        }
+        #timer.done {
+            color: #ff3a3a;
+        }
+        #title {
+            color: #724400;
+            text-shadow: 2px 2px #ffffff33;
+            font-family: "Enigmatic", "Arial", sans-serif;
+            font-size: 64px;
+            line-height: 64px;
+        }
+    </style>
+</head>
+<body>
+    <form id="channel-form">
+        Enter Channel Name: 
+        <input type="text" id="channel-input"/>
+        <button id="channel-go" type="button">Go</button>
+    </form>
+    <script src="countdown.js"></script>
+    <div id="timer-container">
+        <div id="title"></div>
+        <div id="timer"></div>
+    </div>
+</body>
+</html>
