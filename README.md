@@ -18,10 +18,10 @@ If you entered the wrong channel name, double click on the page to clear saved d
 
 ### Usage
 
-| Command | Example | Description |
-| --------------------------- | ---------------------- | ---------------------------------------------------------------|
-| `!timer [duration]`         | `!timer 5m`            | Start a new timer with the given duration with no title. |
-| `!timer [duration] [title]` | `!timer 5m Prediction` | Start a new timer with the given title, which will show above the timer. |
-| `!timer` | `!timer` | Clears the current timer so it disappears. When the timer reaches zero, it'll stay on the screen until cleared. |
+| Command                     | Example                | Description                                                                                                     |
+| --------------------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `!timer [duration]`         | `!timer 5m`            | Start a new timer with the given duration with no title.                                                        |
+| `!timer [duration] [title]` | `!timer 5m Prediction` | Start a new timer with the given title, which will show above the timer.                                        |
+| `!timer`                    | `!timer`               | Clears the current timer so it disappears. When the timer reaches zero, it'll stay on the screen until cleared. |
 
 This tool does not have a bot - the entire thing runs in your browser. It will not receive commands when the page is closed / your stream source is shutdown. However, it will remember the last active timer, and will continue counting even if the page is shut down.
