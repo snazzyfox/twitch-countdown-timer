@@ -40,7 +40,7 @@ function updateTimer() {
 ComfyJS.onCommand = ( user, command, message, flags, extra ) => {
     if ( (flags.moderator || flags.broadcaster) && command == 'timer' ) {
         var input_duation;
-        [input_duration, ...input_title] = message.split(/\s+/, 2);
+        [input_duration, ...input_title] = message.split(/\s+/);
         var duration;
         if (!input_duration) {
             duration = undefined;
