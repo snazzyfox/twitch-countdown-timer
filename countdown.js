@@ -40,7 +40,7 @@ function updateTimer() {
 ComfyJS.onCommand = ( user, command, message, flags, extra ) => {
     if ( (flags.moderator || flags.broadcaster) && command == 'timer' ) {
         var input_duation;
-        [input_duration, title] = message.split(/\s+/, 2);
+        [input_duration, ...input_title] = message.split(/\s+/, 2);
         var duration;
         if (!input_duration) {
             duration = undefined;
@@ -51,9 +51,11 @@ ComfyJS.onCommand = ( user, command, message, flags, extra ) => {
         console.log("New timer", duration, "title", title);
         endTime = Date.now() + duration;
         localStorage.setItem("endTime", endTime);
-        if (title) {
+        if (input_title.length) {
+            title = input_title.join(" ")
             localStorage.setItem("title", title);
         } else {
+            title = undefined;
             localStorage.removeItem("title");
         }
     }
