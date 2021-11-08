@@ -40,28 +40,34 @@ function updateTimer() {
     }
 }
 
-ComfyJS.onCommand = ( user, command, message, flags, extra ) => {
-    if ( (flags.mod || flags.broadcaster) && command == 'timer' ) {
-        var [input_duration, ...input_title] = message.split(/\s+/);
-        if (input_duration) {
-            if (!isNaN(Number(input_duration))) input_duration = input_duration + "s"; // default to seconds if no units
-            duration = Duration.parse(input_duration).milliseconds();
-            endTime = Date.now() + duration;
-            localStorage.setItem("endTime", endTime);
-            if (input_title.length) {
-                title = input_title.join(" ")
-                localStorage.setItem("title", title);
-            } else {
-                title = undefined;
-                localStorage.removeItem("title");
+ComfyJS.onCommand = (user, command, message, flags, extra) => {
+    if (!(flags.mod || flags.broadcaster)) { return }
+    switch (command) {
+        case 'timer':
+            var [subcommand, ...params] = message.split(/\s+/);
+            switch (subcommand) {
+                case 'start':
+                    var [input_duration, ...input_title] = params;
+                    console.log(input_duration, input_title)
+                    if (!isNaN(Number(input_duration))) input_duration = input_duration + "s"; // default to seconds if no units
+                    duration = Duration.parse(input_duration).milliseconds();
+                    endTime = Date.now() + duration;
+                    localStorage.setItem("endTime", endTime);
+                    if (input_title.length) {
+                        title = input_title.join(" ")
+                        localStorage.setItem("title", title);
+                    } else {
+                        title = undefined;
+                        localStorage.removeItem("title");
+                    }
+                    console.log("New timer", duration, ", title=", title);
+                    break;
+                case 'clear':
+                    endTime = title = undefined;
+                    localStorage.removeItem("endTime");
+                    localStorage.removeItem("title");
+                    break;
             }
-            console.log("New timer", duration, ", title=", title);
-        } else {
-            endTime = title = undefined;
-            localStorage.removeItem("endTime");
-            localStorage.removeItem("title");
-        }
-
     }
 }
 
