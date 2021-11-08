@@ -21,9 +21,8 @@
             text-shadow: 4px 4px #00000066;
             font-family: "Digital-7 Mono", "Courier New", monospace;
             font-size: 180px;
-            line-height: 180px;
+            line-height: 140px;
             width: 640px;
-            text-align: right;
         }
         #timer.done {
             animation: alt 2s infinite;
@@ -33,7 +32,7 @@
             text-shadow: 2px 2px #ffffff33;
             font-family: "Enigmatic", "Arial", sans-serif;
             font-size: 64px;
-            line-height: 64px;
+            line-height: 60px;
         }
     </style>
 </head>
@@ -41,12 +40,12 @@
     <form id="channel-form">
         Enter Channel Name: 
         <input type="text" id="channel-input"/>
-        <button id="channel-go" type="button">Go</button>
+        <button id="channel-go" type="submit">Go</button>
     </form>
     <script src="countdown.js"></script>
     <div id="timer-container">
-        <div id="title"></div>
         <div id="timer"></div>
+        <div id="title"></div>
     </div>
 </body>
 </html>

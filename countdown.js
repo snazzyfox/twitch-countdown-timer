@@ -77,7 +77,7 @@ window.addEventListener('load', () => {
     setInterval(updateTimer, 500);
 })
 
-document.getElementById("channel-go").addEventListener("click", () => {
+document.getElementById("channel-form").addEventListener("click", () => {
     const newValue = document.getElementById("channel-input").value;
     if (newValue) {
         localStorage.setItem("channel", newValue);
