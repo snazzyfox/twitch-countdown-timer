@@ -41,7 +41,7 @@ function updateTimer() {
 }
 
 ComfyJS.onCommand = ( user, command, message, flags, extra ) => {
-    if ( (flags.moderator || flags.broadcaster) && command == 'timer' ) {
+    if ( (flags.mod || flags.broadcaster) && command == 'timer' ) {
         var [input_duration, ...input_title] = message.split(/\s+/);
         if (input_duration) {
             if (!isNaN(Number(input_duration))) input_duration = input_duration + "s"; // default to seconds if no units
