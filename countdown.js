@@ -16,9 +16,9 @@ function updateTimer() {
         const duration = endTime - now;
         if (duration > 0) {
             const days = Math.floor(duration / (24 * 60 * 60 * 1000));
-            const hours = Math.floor(duration / (60 * 60 * 1000) % 24);
-            const minutes = Math.floor(duration / (60 * 1000) % 60);
-            const seconds = Math.floor(duration / (1000) % 60);
+            const hours = Math.floor(duration / (60 * 60 * 1000)) % 24;
+            const minutes = Math.floor(duration / (60 * 1000)) % 60;
+            const seconds = Math.ceil(duration / 1000) % 60; // seconds is ceiling so less than a second left doesn't show as 00:00 
             var formatted = ""
             if (days > 0) {
                 formatted += days.toString() + ":";
