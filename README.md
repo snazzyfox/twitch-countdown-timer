@@ -20,8 +20,8 @@ If you entered the wrong channel name, double click on the page to clear saved d
 
 | Command                     | Example                | Description                                                                                                     |
 | --------------------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `!timer start [duration] [title]` | `!timer start 5m Prediction` | Start a new timer. If a title is given, it'll be displayed next to the timer.
-| `!timer clear` | `!timer` | Clears the current timer making it disappear. When the timer reaches zero, it'll stay on the screen until cleared. |
+| `!timer [duration] [title]` | `!timer start 5m Prediction` | Start a new timer. If a title is given, it'll be displayed next to the timer.
+| `!timer off` | `!timer off` | Turns off the timer and make it disappear. When the timer reaches zero, it'll stay on the screen until turned off. |
 
 The duration can either be a single number in seconds (e.g. 300 = 5 minutes), or a string in the format "1d12h34m56s" with no spaces in between to denote the number of days, hours, minutes, and seconds to count.
 
