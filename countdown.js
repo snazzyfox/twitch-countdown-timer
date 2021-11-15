@@ -14,11 +14,11 @@ function updateTimer() {
     const el = document.getElementById("timer");
     if (endTime) {
         const duration = endTime - now;
-        if (duration > 0) {
+        if (duration > 500) {
             const days = Math.floor(duration / (24 * 60 * 60 * 1000));
             const hours = Math.floor(duration / (60 * 60 * 1000)) % 24;
             const minutes = Math.floor(duration / (60 * 1000)) % 60;
-            const seconds = Math.ceil(duration / 1000) % 60; // seconds is ceiling so less than a second left doesn't show as 00:00 
+            const seconds = Math.floor(duration / 1000) % 60; // seconds is ceiling so less than a second left doesn't show as 00:00 
             var formatted = ""
             if (days > 0) {
                 formatted += days.toString() + ":";
@@ -52,7 +52,7 @@ ComfyJS.onCommand = (user, command, message, flags, extra) => {
             } else {
                 if (!isNaN(Number(input_duration))) input_duration = input_duration + "s"; // default to seconds if no units
                 duration = Duration.parse(input_duration).milliseconds();
-                endTime = Date.now() + duration;
+                endTime = Date.now() + duration + 500; // extra half second for buffer
                 localStorage.setItem("endTime", endTime);
                 if (input_title.length) {
                     title = input_title.join(" ")
