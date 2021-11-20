@@ -9,7 +9,7 @@ A countdown timer for Twitch that can be used by mods to run quick countdowns on
 In your streaming software, create a new browser source with the following parameters: 
 
 - URL: https://snazzyfox.github.io/twitch-countdown-timer/
-- Width: 640, Height: 240
+- Width: 640, Height: 240 per timer. (480 for 2 timers, 720 for 3 timers)
 - Shutdown source when not active: optional; if selected, the timer will not receive any commands when it's hidden in your stream but will save you a little bit of system resources. If unselected the timer can be controlled even when it's not on screen.
 
 The first time you load the page, you will need to enter interact mode for your browser source, and enter your channel name and click "save". This will be remembered for future uses. 
@@ -20,8 +20,8 @@ If you entered the wrong channel name, double click on the page to clear saved d
 
 | Command                     | Example                | Description                                                                                                     |
 | --------------------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `!timer [duration] [title]` | `!timer start 5m Prediction` | Start a new timer. If a title is given, it'll be displayed next to the timer.
-| `!timer off` | `!timer off` | Turns off the timer and make it disappear. When the timer reaches zero, it'll stay on the screen until turned off. |
+| `!timer [duration] [title]` | `!timer start 5m Prediction` | Start a new timer. If a title is given, it'll be displayed under the timer. If there's already a timer running, this timer will be created below existing ones.
+| `!timer off [index]` | `!timer off [index]` | Turns off one of the timers makeing it disappear. When the timer reaches zero, it'll stay on the screen and flash red until turned off. Index starts at 1 and goes from top of screen to bottom. |
 
 The duration can either be a single number in seconds (e.g. 300 = 5 minutes), or a string in the format "1d12h34m56s" with no spaces in between to denote the number of days, hours, minutes, and seconds to count.
 
