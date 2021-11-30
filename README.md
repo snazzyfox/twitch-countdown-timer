@@ -10,7 +10,7 @@ In your streaming software, create a new browser source with the following param
 
 - URL: https://snazzyfox.github.io/twitch-countdown-timer/
 - Width: 640, Height: 240 per timer. (480 for 2 timers, 720 for 3 timers)
-- Shutdown source when not active: optional; if selected, the timer will not receive any commands when it's hidden in your stream but will save you a little bit of system resources. If unselected the timer can be controlled even when it's not on screen.
+- Shutdown source when not active: optional. If selected, the timer will not receive any commands when it's hidden in your stream, and save you a tiny amount of system resources. If unselected the timer can be controlled even when it's not on screen.
 
 The first time you load the page, you will need to enter interact mode for your browser source, and enter your channel name and click "save". This will be remembered for future uses. 
 

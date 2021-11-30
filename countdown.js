@@ -15,6 +15,7 @@ function loadState() {
     if (storedData) {
         timerData = JSON.parse(storedData);
         timerData.forEach(createTimerElement);
+        updateTimer();
     }
     console.log('Loaded stored data.', timerData)
 }
@@ -29,12 +30,10 @@ function createTimerElement() {
     containerElement.classList.add('timer-container');
 
     const timerElement = document.createElement('div');
-    timerElement.id = 'timer' + timerId;
     timerElement.classList.add('timer');
     containerElement.appendChild(timerElement);
 
     const titleElement = document.createElement('div');
-    titleElement.id = 'title' + timerId;
     titleElement.classList.add('title');
     containerElement.appendChild(titleElement);
 
@@ -53,6 +52,7 @@ function addTimer(milliseconds, title) {
         endTime: Date.now() + milliseconds + 500, // extra half second for buffer
         title: title,
     });
+    updateTimer(); // force update timer to avoid delays
     saveState();
     console.log("Added new timer", milliseconds, ", title=", title);
 }
@@ -65,8 +65,9 @@ function removeTimer(index) {
     if (index >=0 && index < timerElements.length) {
         const [removed] = timerData.splice(index, 1);
         console.log('Removing timer', index, removed);
-        const {container: containerElement} = timerElements.pop();
-        containerElement.remove();
+        const [{container: containerElement}] = timerElements.splice(index, 1);
+        containerElement.classList.add('leave');
+        setTimeout(() => { containerElement.remove(); }, 1000);
         saveState();
     }
 }

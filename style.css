@@ -1,33 +1,63 @@
 @import url('https://fonts.cdnfonts.com/css/digital-7-mono');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-@keyframes alt {
-    0%, 49% {color: #ffbb00;}
-    50%, 99% {color: #ff3a3a;}
+
+/* Variables to make overriding easier in OBS. */
+:root {
+    --timer-color: #ffbb00;
+    --timer-done-color: #ff6644;
+    --timer-border-color: #00000099;
+    --timer-shadow-color: #00000099;
+    --title-color: #ffbb00;
+    --title-shadow-color: #000000aa;
+    --animation-speed: 0.35s;
 }
+
+@keyframes flash-colors {
+    0%, 40% {color: var(--timer-color);}
+    50%, 90% {color: var(--timer-done-color);}
+}
+@keyframes slide-in {
+    from { margin-left: 100%; opacity: 0;}
+    to { margin-left: 0%; opacity: 1;}
+}
+@keyframes slide-out {
+    from { margin-left: 0%; opacity: 1; }
+    to { height: 0; margin-left: 100%; opacity: 0; }
+}
+
 body {
-    margin: 0; padding: 0;
-    height: 720px; width: 640px;
+    margin: 0; 
+    padding: 0;
+    width: 640px;
     text-align: right;
 }
+
+.timer-container {
+    animation: slide-in var(--animation-speed) cubic-bezier(.08,.82,.17,1) 1 forwards;
+    height: 240px;
+    width: 100%;
+}
+.timer-container.leave {
+    animation: slide-out var(--animation-speed) cubic-bezier(.08,.82,.17,1) 1 forwards;
+}
+
 .timer {
-    color: #ffbb00;
-    -webkit-text-stroke: 1px #00000099;
-    text-shadow: 4px 4px #000000aa;
+    color: var(--timer-color);
+    -webkit-text-stroke: 1px var(--timer-border-color);
+    text-shadow: 4px 4px var(--timer-border-color);
     font-family: "Digital-7 Mono", "Courier New", monospace;
     font-size: 180px;
     line-height: 140px;
-    width: 640px;
 }
 .timer.done {
-    animation: alt 1.25s infinite;
+    animation: flash-colors 2s infinite;
 }
+
 .title {
-    color: #ff9900;
-    text-shadow: 3px 3px #000000aa;
+    color: var(--title-color);
+    text-shadow: 3px 3px var(--title-shadow-color);
     font-family: 'Bebas Neue', sans-serif;
     font-size: 64px;
     line-height: 60px;
-}
-.timer-container {
-    margin-bottom: 48px;
+    width: 100%;
 }
