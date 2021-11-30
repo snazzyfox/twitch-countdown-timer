@@ -9,7 +9,7 @@
     --timer-shadow-color: #00000099;
     --title-color: #ffbb00;
     --title-shadow-color: #000000aa;
-    --animation-speed: 0.35s;
+    --animation-speed: 0.5s;
 }
 
 @keyframes flash-colors {
