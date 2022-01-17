@@ -73,17 +73,6 @@ function removeTimer(index) {
 }
 
 /**
- * Parses a duration string into milliseconds. If the string is a plain number, it'll be assumed as number of seconds.
- * @param {string} s input duration string
- * @returns {number} Milliseconds after parsing the duration string
- */
-function parseDuration(s) {
-    // default to seconds if no units
-    if (!isNaN(Number(s))) s = s + "s";
-    return Duration.parse(s).milliseconds();
-}
-
-/**
  * Formats time as days:hours:minutes:seconds
  * @param {number} milliseconds milliseconds left in the timer
  * @returns {string} formatted time
@@ -99,7 +88,7 @@ function formatTime(milliseconds) {
             formatted += days.toString() + ":";
         }
         if (hours > 0) {
-            formatted += padNumber(days.toString()) + ":";
+            formatted += padNumber(hours.toString()) + ":";
         }
         formatted += padNumber(minutes) + ":" + padNumber(seconds);
     } else {
@@ -134,7 +123,7 @@ ComfyJS.onCommand = (user, command, message, flags, extra) => {
                 const timerIndex = parseInt(restTokens[0]) - 1;
                 removeTimer(timerIndex);
             } else {
-                const durationMs = parseDuration(firstToken);
+                const durationMs = Duration.parse(firstToken).milliseconds();
                 const title = restTokens.length ? restTokens.join(" ") : "";
                 addTimer(durationMs, title);
             }
