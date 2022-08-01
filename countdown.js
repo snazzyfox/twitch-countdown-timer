@@ -59,9 +59,15 @@ function addTimer(milliseconds, title) {
 
 /**
  * Remove a timer.
- * @param {number} index 0-based index of timer to remove.
+ * @param {number | string} name title of the timer during creation, OR a 1-based index of the timer.
+ *   If more than one timer has the same title, the first match will be removed.
  */
-function removeTimer(index) {
+function removeTimer(title) {
+    // See if a timer with the given title can be found
+    let index = timerData.findIndex(timer => timer.title === title);
+    if (index === -1) {
+        index = parseInt(title[0]) - 1;
+    }
     if (index >=0 && index < timerElements.length) {
         const [removed] = timerData.splice(index, 1);
         console.log('Removing timer', index, removed);
@@ -119,12 +125,11 @@ ComfyJS.onCommand = (user, command, message, flags, extra) => {
     switch (command) {
         case 'timer':
             const [firstToken, ...restTokens] = message.split(/\s+/);
+            const title = restTokens.length ? restTokens.join(" ") : "";
             if (firstToken === 'off') {
-                const timerIndex = parseInt(restTokens[0]) - 1;
-                removeTimer(timerIndex);
+                removeTimer(title);
             } else {
                 const durationMs = Duration.parse(firstToken).milliseconds();
-                const title = restTokens.length ? restTokens.join(" ") : "";
                 addTimer(durationMs, title);
             }
     }
