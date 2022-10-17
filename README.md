@@ -1,3 +1,8 @@
+# This tool has been consolidated into [twitch-tools](https://snazzyfox.github.io/twitch-tools/) 
+
+The consolidated toolkit provide much more functionality and customizations, and is a lot easier to use. This repo will be archived and is no longer maintained, but it will remain available on Github to avoid breaking existing setups.
+
+
 # Twitch Countdown Timer
 
 A countdown timer for Twitch that can be used by mods to run quick countdowns on stream.
